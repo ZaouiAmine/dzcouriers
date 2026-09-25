@@ -68,6 +68,15 @@ func TestCatalog(t *testing.T) {
 	}
 }
 
+func TestWilayas(t *testing.T) {
+	if WilayaName(16) != "Alger" || WilayaName(69) != "El Abiodh Sidi Cheikh" || WilayaName(70) != "" || WilayaName(0) != "" {
+		t.Fatal(WilayaName(16), WilayaName(69))
+	}
+	if WilayaCode("bejaia") != 6 || WilayaCode("Bou Saada") != 68 || WilayaCode("nowhere") != 0 {
+		t.Fatal("codes")
+	}
+}
+
 func TestPhones(t *testing.T) {
 	for in, want := range map[string]string{"0555123456": "0555123456", "+213 555 12 34 56": "0555123456",
 		"00213555123456": "0555123456", "555123456": "0555123456", "12345": ""} {
@@ -208,10 +217,10 @@ func TestZR(t *testing.T) {
 
 func TestNoest(t *testing.T) {
 	f := &fake{routes: map[string]string{
-		"POST /api/public/create/order":        `{"success":true,"tracking":"NO-1"}`,
-		"POST /api/public/valid/order":         `{"success":true}`,
-		"POST /api/public/get/trackings/info":  `{"NO-1":{"OrderInfo":{"tracking":"NO-1"},"activity":[{"event_key":"upload","date":"2026-09-01 08:00:00"},{"event_key":"livred","event":"Order delivered","date":"2026-09-02 08:00:00"}]}}`,
-		"GET /api/public/desks":                `{"16A":{"code":"16A","name":"Alger centre"},"31A":{"code":"31A","name":"Oran"}}`,
+		"POST /api/public/create/order":       `{"success":true,"tracking":"NO-1"}`,
+		"POST /api/public/valid/order":        `{"success":true}`,
+		"POST /api/public/get/trackings/info": `{"NO-1":{"OrderInfo":{"tracking":"NO-1"},"activity":[{"event_key":"upload","date":"2026-09-01 08:00:00"},{"event_key":"livred","event":"Order delivered","date":"2026-09-02 08:00:00"}]}}`,
+		"GET /api/public/desks":               `{"16A":{"code":"16A","name":"Alger centre"},"31A":{"code":"31A","name":"Oran"}}`,
 	}}
 	cl := &Client{Transport: f}
 	acc := Account{Provider: "noest", Credentials: map[string]string{"api_token": "t", "user_guid": "g"}}
@@ -235,10 +244,10 @@ func TestNoest(t *testing.T) {
 
 func TestProcolisAndMaystro(t *testing.T) {
 	f := &fake{routes: map[string]string{
-		"POST /api_v1/add_colis":               `{"Colis":[{"Tracking":"A100","MessageRetour":"Good"}]}`,
-		"POST /api_v1/lire":                    `{"Colis":[{"Tracking":"A100","Situation":"Livrée"}]}`,
-		"POST /api/orders/":                    `{"id":987,"display_id":"MY-987"}`,
-		"GET /api/orders/history_order/987":    `[{"status":31,"created_at":"2026-09-01T10:00:00Z"},{"status":41,"created_at":"2026-09-02T10:00:00Z"}]`,
+		"POST /api_v1/add_colis":            `{"Colis":[{"Tracking":"A100","MessageRetour":"Good"}]}`,
+		"POST /api_v1/lire":                 `{"Colis":[{"Tracking":"A100","Situation":"Livrée"}]}`,
+		"POST /api/orders/":                 `{"id":987,"display_id":"MY-987"}`,
+		"GET /api/orders/history_order/987": `[{"status":31,"created_at":"2026-09-01T10:00:00Z"},{"status":41,"created_at":"2026-09-02T10:00:00Z"}]`,
 	}}
 	cl := &Client{Transport: f}
 	pa := Account{Provider: "abex", Credentials: map[string]string{"key": "k", "token": "t"}}
