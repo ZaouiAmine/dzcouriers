@@ -60,7 +60,7 @@ func add(key, name, family, base string, alt ...string) {
 var ecotrackTenants = [][3]string{
 	{"e48hrlivraison", "48Hr Livraison", "48hr"}, {"abdelivery", "AB Delivery", ""},
 	{"alania", "Alania Express", ""}, {"allolivraison", "Allo Livraison", ""},
-	{"amana", "Amana Speed", ""}, {"andersondelivery", "Anderson Delivery", "anderson"},
+	{"amana", "Amana Speed", ""}, {"andersondelivery", "Anderson Delivery", ""},
 	{"aranex", "Aranex", ""}, {"areex", "Areex", ""}, {"assildelivery", "Assil Delivery", ""},
 	{"atlasexpress", "Atlas Express", "atlaexpress"}, {"baconsult", "BA Consult", "bacexpress"},
 	{"bfkexpress", "BFK Express", ""}, {"boogi", "Boogi Technologie", ""},
@@ -92,7 +92,7 @@ var ecotrackTenants = [][3]string{
 	{"tslexpress", "TSL Express", "tsl"}, {"ultraexpress", "Ultra Express", ""},
 	{"univerdelivery", "Univer Delivery", ""}, {"vitrans", "Vitrans", ""},
 	{"wassimexpress", "Wassim Express", ""}, {"weeweedelivery", "Wee Wee Delivery", ""},
-	{"windelivery", "Win Delivery", ""}, {"worldexpress", "WorldExpress", "world-express"},
+	{"windelivery", "Win Delivery", ""}, {"worldexpress", "WorldExpress", "world-express"}, // worldexpress.ecotrack.dz does not resolve,
 	{"zinyatec", "Zinya Tec", ""},
 }
 
